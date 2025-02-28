@@ -36,6 +36,31 @@ describe('tasks/script/EnhancedScript', () => {
 
     })
 
+
+    it("Ensure build-in parameters are ignored from missing values in json detection", () => {
+        fs.writeFileSync(testJsxFilePath,`
+            var a = NX.get('unittest_undefined_parameter')
+            var b = NX.get('nxWorkpath')
+            var c = NX.get('nxUID')
+        `);
+    
+        const enhancedScript = new EnhancedScript(testJsxFilePath, 'src', [
+            {
+                key: 'unittest_defined_parameter',
+                value: 'VALUE'
+            },
+        ], 'NX', {}, 'unittest', { log: () => {} });
+    
+            const anyMissing = enhancedScript.findMissingMatchesInJSX();
+            expect(anyMissing).true;
+            expect(enhancedScript.missingJSONParams.map((o) => { return o.key})).to.have.members(['unittest_undefined_parameter'])
+    
+            expect(enhancedScript.injectParameters()).to.equal(
+                [`NX.set('unittest_defined_parameter', "VALUE");`,
+                `NX.set('unittest_undefined_parameter', undefined);`,
+            ].join('\n'));
+    })
+
     it("injects functions and functions with arguments", () => {
 
         //FIXME: NX.get('unittest_undefined_function', 'arg1')  is currently not found and no warning is given

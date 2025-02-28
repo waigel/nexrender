@@ -139,10 +139,16 @@ function EnhancedScript (
 
         // Parse all occurrences of the usage of NX on the provided script.
         const nxMatches = [...script.matchAll(getSearchUsageByMethodRegex(this.keyword, "get", "gm"))];
+        const buildInParameters = ["nxWorkpath", "nxUID"];
 
         if (nxMatches && nxMatches.length > 0 ) {
             nxMatches.forEach( match => {
                 const keyword = match[2];
+
+                // We don't want to add the built-in parameters to the missing list.
+                if (buildInParameters.includes(keyword)) {
+                    return;
+                }
 
                 var nxMatch = {
                     key: keyword.replace(/\s/g, ''),
