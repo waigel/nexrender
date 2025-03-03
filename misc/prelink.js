@@ -9,6 +9,10 @@ Object.keys(pkg.peerDependencies).map(dep => {
         const command = `npm link --no-package-lock --legacy-peer-deps ../${dep.replace('@nexrender/', 'nexrender-')}`
         console.log(`executing > ${command}`)
         execSync(command)
+    }else {
+        const command = `npm link --no-package-lock --legacy-peer-deps ../../extensions/${dep}`
+        console.log(`executing > ${command}`)
+        execSync(command)
     }
     if (dep.indexOf('@extensions/') !== -1) {
         const command = `npm link --no-package-lock --legacy-peer-deps ../../extensions/${dep.replace('@extensions/', '')}`
