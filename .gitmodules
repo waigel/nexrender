@@ -1,0 +1,6 @@
+[submodule "extensions/nexrender-action-upload-s3-presigned"]
+	path = extensions/nexrender-action-upload-s3-presigned
+	url = git@github.com:oreporan/nexrender-action-upload-s3-presigned.git
+[submodule "extensions/nexrender-action-template-unzip"]
+	path = extensions/nexrender-action-template-unzip
+	url = git@github.com:Pilskalns/nexrender-action-template-unzip.git
