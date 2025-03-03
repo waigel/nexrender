@@ -39,7 +39,7 @@
         "@nexrender/provider-nx": "^1.47.0",
         "@nexrender/provider-s3": "^1.21.4",
         "@nexrender/provider-sftp": "^1.37.9",
-        "nexrender-action-template-unzip": "^1.0.0",
+        "nexrender-action-template-unzip": "^1.1.0",
         "nexrender-action-upload-s3-presigned": "^1.0.0"
     },
     "publishConfig": {

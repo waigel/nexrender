@@ -43,6 +43,10 @@ if (process.env.NEXRENDER_REQUIRE_PLUGINS) {
     require('@nexrender/provider-gs');
     require('@nexrender/provider-sftp');
     require('@nexrender/provider-nx');
+
+    // Externel extensions
+    require('nexrender-action-template-unzip');
+    require('nexrender-action-upload-s3-presigned');
 }
 
 const init = (settings) => {
